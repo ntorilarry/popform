@@ -12,10 +12,6 @@ const Profile = () => {
   const [localEmail, setLocalEmail] = useState(email);
 
   const handleSave = () => {
-    if (!localFirstName || !localLastName || !localEmail) {
-      alert("Please fill out all fields.");
-      return;
-    }
     setFirstName(localFirstName);
     setLastName(localLastName);
     setEmail(localEmail);
@@ -31,7 +27,7 @@ const Profile = () => {
         </p>
       </div>
 
-      <div className="max-w-3xl mt-12">
+      <form onSubmit={handleSave} className="max-w-3xl mt-12">
         <div className="space-y-8">
           <div className="sm:grid sm:grid-cols-3 sm:gap-5 sm:items-start">
             <label
@@ -49,6 +45,7 @@ const Profile = () => {
                     placeholder="First Name"
                     value={localFirstName}
                     onChange={(e) => setLocalFirstName(e.target.value)}
+                    required
                     className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600"
                   />
                 </div>
@@ -59,6 +56,7 @@ const Profile = () => {
                     placeholder="Last Name"
                     value={localLastName}
                     onChange={(e) => setLocalLastName(e.target.value)}
+                    required
                     className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600"
                   />
                 </div>
@@ -80,6 +78,7 @@ const Profile = () => {
                 placeholder="someone@example.com"
                 value={localEmail}
                 onChange={(e) => setLocalEmail(e.target.value)}
+                required
                 className="border block w-full px-4 py-3 placeholder-gray-500 border-gray-300 rounded-lg focus:ring-indigo-600 focus:border-indigo-600 sm:text-sm caret-indigo-600"
               />
             </div>
@@ -88,13 +87,13 @@ const Profile = () => {
 
         <div className="mt-6 sm:mt-12">
           <button
-            onClick={handleSave}
+            type="submit"
             className="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold leading-5 text-white transition-all duration-200 bg-indigo-600 border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600 hover:bg-indigo-500"
           >
             Save
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
